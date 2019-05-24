@@ -12,6 +12,7 @@ less accurate over the years. To address this, override the default
 values via the command line. The following command line parameters 
 are supported:
 
+|-------|---------------------------------------------------|
 | /n N  |  N is the initial population count (no commas!)   |
 | /d D  |  D is the census date in MM/DD/YYYY format only   |
 | /g G  |  G is the annual growth rate (not a percentage!)  |
