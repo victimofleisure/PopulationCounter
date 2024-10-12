@@ -9,6 +9,7 @@
 		rev		date	comments
         00		19apr19	initial version
 		01		22may19	add command line parameters
+		02		10mar24	add launch full screen flag; update stats
 
 */
 
@@ -40,9 +41,10 @@ CPopulationCounterApp::CPopulationCounterApp()
 
 	// Population data from http://worldometers.info
 	// This data can be overriden via the command line; see below.
-	m_nInitCount = 7714576923ll;
-	m_tInitCount = CTime(2019, 7, 1, 0, 0, 0);
-	m_fAnnualChange = 0.0107;
+	m_nInitCount = 8118835999;
+	m_tInitCount = CTime(2024, 7, 1, 0, 0, 0);
+	m_fAnnualChange = 0.0091;
+	m_bLaunchFullScreen = false;
 }
 
 CPopulationCounterApp::CMyCommandLineInfo::CMyCommandLineInfo()
@@ -57,7 +59,8 @@ void CPopulationCounterApp::CMyCommandLineInfo::ParseParam(const TCHAR* pszParam
 	/n N	N is the initial population count (no commas!)
 	/d D	D is the census date in MM/DD/YYYY format only
 	/g G	G is the annual growth rate (not a percentage!)
-	
+	/f      launch in full screen mode
+
 	Sample command line:
 	PopulationCounter /n 7714576923 /d 7/1/2019 /g 0.0107
 
@@ -71,18 +74,26 @@ void CPopulationCounterApp::CMyCommandLineInfo::ParseParam(const TCHAR* pszParam
 		P_INIT_COUNT,
 		P_CENSUS_DATE,
 		P_GROWTH_RATE,
+		P_FULL_SCREEN,
 		PARAMS
 	};
 	static const LPCTSTR arrParamName[PARAMS] = {
 		_T("n"),
 		_T("d"),
-		_T("g")
+		_T("g"),
+		_T("f")
 	};
 	if (bFlag) {	// if flag name
 		m_iParam = -1;	// init to unknown parameter
 		for (int iParam = 0; iParam < PARAMS; iParam++) {	// for each parameter
 			if (!_tcsicmp(pszParam, arrParamName[iParam])) {	// if name matches
-				m_iParam = iParam;	// store parameter index
+				switch (iParam) {
+				case P_FULL_SCREEN:
+					theApp.m_bLaunchFullScreen = true;
+					break;
+				default:
+					m_iParam = iParam;	// store parameter index
+				}
 				break;
 			}
 		}

@@ -9,6 +9,7 @@
 		rev		date	comments
         00		19apr19	initial version
 		01		22may19	add command line parameters
+		02		10mar24	add launch full screen flag
 
 */
 
@@ -123,6 +124,8 @@ BOOL CPopulationCounterDlg::OnInitDialog()
 	rText.DeflateRect(m_nTextBorder, m_nTextBorder);
 	m_wndText.Create(_T(""), WS_CHILD | WS_VISIBLE, rText, this);
 	SetTimer(TIMER_ID, TIMER_PERIOD, NULL);
+	if (theApp.m_bLaunchFullScreen)
+		PostMessage(WM_SYSCOMMAND, IDM_FULLSCREEN);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }

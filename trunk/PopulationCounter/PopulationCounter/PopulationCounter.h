@@ -9,6 +9,7 @@
 		rev		date	comments
         00		19apr19	initial version
 		01		22may19	add command line parameters
+		02		10mar24	add launch full screen flag
 
 */
 
@@ -36,6 +37,7 @@ public:
 	LONGLONG	m_nInitCount;		// initial population count
 	CTime	m_tInitCount;			// time of initial population count
 	double	m_fAnnualChange;		// annual population change as a fraction
+	bool	m_bLaunchFullScreen;	// if true, go full screen on launch
 
 // Overrides
 public:
