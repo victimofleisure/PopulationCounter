@@ -16,6 +16,7 @@ are supported:
 /n N    N is the initial population count (no commas!)
 /d D    D is the census date in MM/DD/YYYY format only
 /g G    G is the annual growth rate (not a percentage!)
+/f      launch in full screen mode
 ~~~
 
 Sample command line:
